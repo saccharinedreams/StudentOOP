@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\my_code",
-    "\\tests"
+    "\\tests",
+    "\\tests\\test_hello.dSYM"
   ],
-  "SelectedNode": "\\my_code\\hello.cpp",
+  "SelectedNode": "\\tests",
   "PreviewInSolutionExplorer": false
 }
