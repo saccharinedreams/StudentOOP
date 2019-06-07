@@ -41,6 +41,9 @@ ostream& operator<<(std::ostream& os, const Weather& w) {
 	else if (w.rating == GOOD) cout << "good ";
 	else cout << "invalid ";
 	cout << "at " << w.my_loc << endl;
+	for (WReading wr : w.wreadings) {
+		cout << wr;
+	}
 	return os;
 }
 
