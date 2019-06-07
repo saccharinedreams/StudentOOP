@@ -4,6 +4,13 @@
 
 using namespace std;
 
+ostream& operator<<(ostream& os, const Date& date) {
+	cout << "Date: " << date.month << "/" << date.day << "/"
+		<< date.year << endl;
+}
+
+Date::Date(int d, int m, int y) : day(d), month(m), year(y) {}
+
 /*
  * A constructor for weather class.
  * */
@@ -17,6 +24,12 @@ ostream& operator<<(std::ostream& os, const GPS& gps) {
 	return os;
 }
 
+ostream& operator<<(std::ostream& os, const WReading& wr) {
+	cout << wr.date << "Temperature: " << wr.temperature <<
+		"\nHumidity: " << wr.humidity << "\nWindspeed: " << wr.windspeed
+		<< endl;
+}
+
 ostream& operator<<(std::ostream& os, const Weather& w) {
 	cout << "Weather station " << w.get_name() << " report" <<
 		endl << "Weather is ";
@@ -24,7 +37,7 @@ ostream& operator<<(std::ostream& os, const Weather& w) {
 	else if (w.rating == BAD) cout << "bad ";
 	else if (w.rating == OK) cout << "ok ";
 	else if (w.rating == GOOD) cout << "good ";
-	else cout << "invalid "; 
+	else cout << "invalid ";
 	cout << "at " << w.my_loc << endl;
 	return os;
 }
@@ -38,4 +51,8 @@ int Weather::get_rating() const {
 }
 void Weather::set_rating(int new_rating) {
 	rating = new_rating;
+}
+
+void Weather::add_reading(WReading wr) {
+	wreadings.push_back(wr);
 }
