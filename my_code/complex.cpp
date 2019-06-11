@@ -59,7 +59,7 @@ double Complex::get_imag() const {
 }
 
 Complex Complex::operator*(const int i) {
-	Complex prod(real * 2, imag * 2);
+	Complex prod(real * i, imag * i);
 	return prod;
 }
 
