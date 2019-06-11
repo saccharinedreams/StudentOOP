@@ -32,12 +32,15 @@ public:
 		date(dt), temperature(temp), humidity(hum), windspeed(ws)
 	{
 	}
-
+	double get_tempF();
+	double get_tempC();
 private:
 	Date date;
 	double temperature;  // stored temp in C
 	double humidity;
 	double windspeed;
+	const double F_TO_C = 5 / 9;
+	const double C_TO_F = 9 / 5;
 };
 
 

@@ -61,3 +61,11 @@ void Weather::set_rating(int new_rating) {
 void Weather::add_reading(WReading wr) {
 	wreadings.push_back(wr);
 }
+
+double WReading::get_tempC() {
+	return temperature;
+}
+
+double WReading::get_tempF() {
+	return (temperature * C_TO_F) + 32;
+}
