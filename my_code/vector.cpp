@@ -15,7 +15,15 @@ void print_vector(const MyVec& v) {
 }
 
 
-MyVec::MyVec() : sz(0), capacity(1), data(new int[sz]) {
+MyVec::MyVec() : sz(0), capacity(1) {
+	try
+	{
+		data = new int[sz];
+	}
+	catch (std::bad_alloc& error)
+	{
+		std::cerr << "bad_alloc caught: " << error.what() << '\n';
+	}
 }
 
 MyVec::MyVec(const MyVec& v2) {
