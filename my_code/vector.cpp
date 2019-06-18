@@ -36,7 +36,7 @@ MyVec::~MyVec() {
 
 MyVec& MyVec::operator=(const MyVec& v2) {
 	if (this != &v2) {
-		delete data;
+		delete [] data;
 		data = new int[v2.sz];
 		sz = v2.sz;
 		capacity = v2.capacity;
