@@ -50,8 +50,13 @@ void Image::copy_fields(const Image& img2) {
  * Setting `display() = 0` here makes this an abstract
  * class that can't be implemented.
  * */
+/*
 string Image::display(std::string s) {
 	return "Displaying image " + s;
+}
+*/
+void Image::display() {
+	cout << filename << endl;
 }
 
 ostream& operator<<(ostream& os, const Date& date) {
@@ -112,6 +117,10 @@ void Weather::add_reading(WReading wr) {
 	wreadings.push_back(wr);
 }
 
+void Weather::display_images() {
+
+}
+
 /*
 double WReading::get_tempC() {
 	return temperature;
@@ -120,4 +129,19 @@ double WReading::get_tempC() {
 
 double WReading::get_tempF() {
 	return (temperature * C_TO_F) + 32;
+}
+
+void Jpeg::display() {
+	cout << "Displaying Jpeg" << endl;
+	Image::display();
+}
+
+void Gif::display() {
+	cout << "Displaying Gif" << endl;
+	Image::display();
+}
+
+void Png::display() {
+	cout << "Displaying Png" << endl;
+	Image::display();
 }
