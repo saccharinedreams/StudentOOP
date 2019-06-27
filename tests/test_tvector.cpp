@@ -48,7 +48,6 @@ int main() {
 
 	MyVec<string> sv = MyVec<string>(10, "Hello");
 	for (int i = 0; i < sv.size(); i++) {
-		//cout << sv[i] << endl;
 		assert(sv[i] == "Hello");
 	}
 	print_vector(sv);
