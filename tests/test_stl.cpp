@@ -13,22 +13,40 @@ using namespace std;
 /*
  * print_vec to print vectors
  * */
+template <typename T>
+void print_vec(const string& name, const vector<T>& v) {
+	cout << name << ": " << endl;
+	for (auto x = v.begin(); x != v.end(); ++x) cout << *x;
+	cout << endl;
+}
 
- /*
-  * Let's make a template for a `print_list` that can handle
-  * lists of any type:
-  * Templates are the C++ feature that enable generic programming.
-  * */
+/*
+ * Let's make a template for a `print_list` that can handle
+ * lists of any type:
+ * Templates are the C++ feature that enable generic programming.
+ * */
 
-  /*
-   * But, we can go even more generic, and make a `print` that can print
-   * *containers* of any sequential type:
-   * */
+template <typename T>
+void print_list(const string& name, const list<T>& lst) {
+	cout << name << ": " << endl;
+	for (auto x = lst.begin(); x != lst.end(); ++x) cout << *x;
+	cout << endl;
+}
 
+/*
+ * But, we can go even more generic, and make a `print` that can print
+ * *containers* of any sequential type:
+ * */
+template <typename T>
+void print(const string& name, const T& container) {
+	cout << name << ": " << endl;
+	for (auto x = container.begin(); x != container.end(); ++x) cout << *x;
+	cout << endl;
+}
 
-   /*
-	* A Cat class just so we can show these work on our types:
-	* */
+/*
+ * A Cat class just so we can show these work on our types:
+ * */
 class Cat {
 	friend ostream& operator<<(ostream& os, const Cat& cat) {
 		os << "meow ";
@@ -45,10 +63,18 @@ bool is_odd(int n) { return (n % 2) != 0; }
 /*
  * Or, we could have a *functor*!
  * */
+class IsOdd {
+private:
+	//int num;
+public:
+	//IsOdd(int n) : num(n) { }
+	bool operator() (int num) const { return num % 2 == 1; }
 
- /*
-  * Our main will exercise some STL capabilities.
-  * */
+};
+
+/*
+ * Our main will exercise some STL capabilities.
+ * */
 int main() {
 	int bjarnelen = 17;
 	int dennislen = 14;
@@ -64,13 +90,13 @@ int main() {
 	 * We will create it with a half-open range, and then sort it.
 	 * */
 	vector<char> cvec(s2, s2 + dennislen);
-	//    print_vec("cvec", cvec);
+	print_vec("cvec", cvec);
 	sort(cvec.begin(), cvec.end());
-	//    print_vec("sorted cvec", cvec);
+	print_vec("sorted cvec", cvec);
 
-		/*
-		 * Create a `char` list:
-		 * */
+	/*
+	 * Create a `char` list:
+	 * */
 	list<char> clist(s, s + bjarnelen);
 	list<char> clist2 = clist;
 	list<char> clist3(s2, s2 + dennislen);
@@ -79,20 +105,21 @@ int main() {
 	 * reverses an iterable structure:
 	 * */
 	reverse(clist.begin(), clist.end());
-	//    print_list("clist reversed", clist);
-	//    print_list("clist2 not reversed", clist2);
+	print_list("clist reversed", clist);
+	print_list("clist2 not reversed", clist2);
 
-		/*
-		 * But even after `clist` is reversed, `clist` and
-		 * `clist2` are still permutations of each other:
-		 * */
+	/*
+	 * But even after `clist` is reversed, `clist` and
+	 * `clist2` are still permutations of each other:
+	 * */
 	cout << "Is clist a permutation of clist2? "
 		<< is_permutation(clist.begin(), clist.end(), clist2.begin())
 		<< endl; ;
+	/*
 	cout << "Is clist a permutation of clist3? "
 		<< is_permutation(clist.begin(), clist.end(), clist3.begin())
 		<< endl; ;
-
+	*/
 	/*
 	 * Testing a list of Cats:
 	 * */
@@ -109,32 +136,44 @@ int main() {
 	/*
 	 * Our print can work for lists as well as vectors:
 	 * */
-	 //    print("print: ilist", ilist);
-	 //    print("print: sorted cvec", cvec);
-		 /*
-		  * `sort()` does not work for lists, since they aren't random access.
-		  * Thus lists have their own `sort()` method, called below:
-		  * This *won't* work: `sort(ilist.begin(), ilist.end());`
-		  * */
-		  //    ilist.sort();
-		  //    print("ilist sorted", ilist);
+	print("print: ilist", ilist);
+	print("print: sorted cvec", cvec);
+	/*
+	 * `sort()` does not work for lists, since they aren't random access.
+	 * Thus lists have their own `sort()` method, called below:
+	 * This *won't* work: `sort(ilist.begin(), ilist.end());`
+	 * */
+	 //    ilist.sort();
+	 //    print("ilist sorted", ilist);
 
-			  /*
-			   * Let's experiment with *iterators* a bit!
-			   * */
+   /*
+	* Let's experiment with *iterators* a bit!
+	* */
 
-			   /*
-				* Here we are going to pass `is_odd()` to `find_if()`.
-				* */
+	/*
+	* Here we are going to pass `is_odd()` to `find_if()`.
+	* */
+	list<int>::iterator odd_iter = find_if(ilist.begin(), ilist.end(), is_odd);
+	cout << "First odd number in ilist is: " << *odd_iter << endl;
+	//odd_iter++;
+	//cout << "The next number in ilist is: " << *odd_iter << endl;
+	 /*
 
-				/*
-				 * Here we are going to pass functor `IsOdd` to `find_if()`.
-				 * */
-
-				 /*
-				  * Here we are going to pass a *lambda* to `find_if()`.
-				  * The lambda starts with `[]`. The point here is to show
-				  * that this form and the one above are identical in effect.
-				  * */
-				  // cout << "First lambda odd number in list is: " << *if_iter3 << endl;
+	* Here we are going to pass functor `IsOdd` to `find_if()`.
+	* */
+	IsOdd odd_functor = IsOdd();
+	list<int>::iterator odd_iter2 = find_if(ilist.begin(), ilist.end(), odd_functor);
+	cout << "First odd number in ilist is: " << *odd_iter2 << endl;
+	//odd_iter2++;
+	//cout << "The next number in ilist is: " << *odd_iter2 << endl;
+	
+	/*
+	 * Here we are going to pass a *lambda* to `find_if()`.
+	 * The lambda starts with `[]`. The point here is to show
+	 * that this form and the one above are identical in effect.
+	 * */
+	list<int>::iterator odd_iter3 = find_if(ilist.begin(), ilist.end(), [](int n) { return (n % 2) == 1; });
+	cout << "First lambda odd number in ilist is: " << *odd_iter2 << endl;
+	//odd_iter3++;
+	//cout << "The next lambda odd number in ilist is: " << *odd_iter2 << endl;
 }
