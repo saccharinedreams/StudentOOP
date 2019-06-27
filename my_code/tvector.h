@@ -32,7 +32,7 @@ class MyVec {
             data = new T[DEF_CAPACITY];
         }
 
-        MyVec(int sz, T val=T()) : capacity(sz), data(new T[sz]) {
+        MyVec(int sz, T val=T()) : sz(sz), capacity(sz), data(new T[sz]) {
 			for (int i = 0; i < sz; ++i) push_back(val);
 		}
 
