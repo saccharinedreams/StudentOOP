@@ -42,7 +42,7 @@ $(TEST_DIR)/test_tvector: $(TEST_DIR)/test_tvector.cpp
 
 test_stl: $(TEST_DIR)/test_stl
 
-$(TEST_DIR)/test_stl: $(STUDENT_DIR)/test_stl.cpp $(TEST_DIR)/test_stl.cpp
+$(TEST_DIR)/test_stl: $(TEST_DIR)/test_stl.cpp
 
 
 tests: test_hello test_basics test_pointers test_complex test_vector test_tvector test_llist test_stl
