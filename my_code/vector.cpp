@@ -18,6 +18,13 @@ void print_vector(const MyVec& v) {
 MyVec::MyVec() : sz(0), capacity(1), data(new int[sz]) {
 }
 
+
+MyVec::MyVec(int sz, int val) : sz(sz), capacity(sz) {
+	data = new int[sz];
+	for (int i = 0; i < sz; ++i) data[i] = val;
+}
+
+
 MyVec::MyVec(const MyVec& v2) {
 	try
 	{
@@ -99,3 +106,12 @@ int& MyVec::operator[](int i) {
 	}
 	return data[i];
 }
+
+MyVec::Iterator MyVec::begin() const {
+	return MyVec::Iterator(data);
+}
+
+MyVec::Iterator MyVec::end() const {
+	return MyVec::Iterator(&data[sz]);
+}
+
