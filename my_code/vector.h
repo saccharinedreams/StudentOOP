@@ -25,7 +25,7 @@ public:
 		}
 
 		int operator*() { return *iptr; }
-
+		//~Iterator();
 	private:
 		int* iptr;
 	};

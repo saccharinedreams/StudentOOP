@@ -18,12 +18,9 @@ void print_vector(const MyVec& v) {
 MyVec::MyVec() : sz(0), capacity(1), data(new int[sz]) {
 }
 
-
-MyVec::MyVec(int sz, int val) : sz(sz), capacity(sz) {
-	data = new int[sz];
+MyVec::MyVec(int sz, int val) : sz(sz), capacity(sz), data(new int[sz]) {
 	for (int i = 0; i < sz; ++i) data[i] = val;
 }
-
 
 MyVec::MyVec(const MyVec& v2) {
 	try
@@ -42,7 +39,7 @@ MyVec::MyVec(const MyVec& v2) {
 }
 
 MyVec::~MyVec() {
-	delete [] data;
+	delete[] data;
 	data = nullptr;
 	sz = 0;
 	capacity = 1;
@@ -50,7 +47,7 @@ MyVec::~MyVec() {
 
 MyVec& MyVec::operator=(const MyVec& v2) {
 	if (this != &v2) {
-		delete [] data;
+		delete[] data;
 		data = new int[v2.sz];
 		sz = v2.sz;
 		capacity = v2.capacity;
@@ -114,4 +111,3 @@ MyVec::Iterator MyVec::begin() const {
 MyVec::Iterator MyVec::end() const {
 	return MyVec::Iterator(&data[sz]);
 }
-
