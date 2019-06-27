@@ -98,7 +98,7 @@ class MyVec {
 template <typename T>
 void print_vector(const MyVec<T>& v) {
 	for (int i = 0; i < v.size(); ++i) std::cout << v[i] << " ";
-	std::cout << ::endl;
+	std::cout << std::endl;
 }
 
 template <typename T>
