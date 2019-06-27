@@ -26,7 +26,7 @@ $(TEST_DIR)/test_complex: $(STUDENT_DIR)/complex.cpp $(TEST_DIR)/test_complex.cp
 
 test_vector: $(TEST_DIR)/test_vector
 
-$(TEST_DIR)/test_vector: $(TEST_DIR)/test_vector.cpp
+$(TEST_DIR)/test_vector: $(STUDENT_DIR)/vector.cpp $(TEST_DIR)/test_vector.cpp
 
 test_llist: $(TEST_DIR)/test_llist
 
@@ -38,11 +38,11 @@ $(TEST_DIR)/test_templ_ll: $(TEST_DIR)/test_templ_ll.cpp
 
 test_tvector: $(TEST_DIR)/test_tvector
 
-$(TEST_DIR)/test_tvector: $(TEST_DIR)/test_tvector.cpp
+$(TEST_DIR)/test_tvector: $(STUDENT_DIR)/tvector.cpp $(TEST_DIR)/test_tvector.cpp
 
 test_stl: $(TEST_DIR)/test_stl
 
-$(TEST_DIR)/test_stl: $(TEST_DIR)/test_stl.cpp
+$(TEST_DIR)/test_stl: $(STUDENT_DIR)/test_stl.cpp $(TEST_DIR)/test_stl.cpp
 
 
 tests: test_hello test_basics test_pointers test_complex test_vector test_tvector test_llist test_stl
