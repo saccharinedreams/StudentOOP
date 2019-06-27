@@ -16,7 +16,10 @@ using namespace std;
 template <typename T>
 void print_vec(const string& name, const vector<T>& v) {
 	cout << name << ": " << endl;
-	for (auto x = v.begin(); x != v.end(); ++x) cout << *x;
+	for (const T& x : v) {
+		cout << x;
+	}
+	//for (auto x = v.begin(); x != v.end(); ++x) cout << *x;
 	cout << endl;
 }
 
@@ -29,7 +32,10 @@ void print_vec(const string& name, const vector<T>& v) {
 template <typename T>
 void print_list(const string& name, const list<T>& lst) {
 	cout << name << ": " << endl;
-	for (auto x = lst.begin(); x != lst.end(); ++x) cout << *x;
+	for (const T& x : lst) {
+		cout << x;
+	}
+	//for (auto x = lst.begin(); x != lst.end(); ++x) cout << *x;
 	cout << endl;
 }
 
@@ -40,7 +46,10 @@ void print_list(const string& name, const list<T>& lst) {
 template <typename T>
 void print(const string& name, const T& container) {
 	cout << name << ": " << endl;
-	for (auto x = container.begin(); x != container.end(); ++x) cout << *x;
+	for (const auto& x : container) {
+		cout << x;
+	}
+	//for (auto x = container.begin(); x != container.end(); ++x) cout << *x;
 	cout << endl;
 }
 
